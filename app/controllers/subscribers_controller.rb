@@ -6,10 +6,8 @@ class SubscribersController < ApplicationController
   ##
   # GET /api/subscribers
   def index
-    subscribers = Subscriber.all
-
-    total_records = subscribers.count
-    limited_subscribers = subscribers[offset...(offset+limit)]
+    total_records = Subscriber.count
+    limited_subscribers = Subscriber.limit(limit).offset(offset)
 
     render json: {subscribers: limited_subscribers, pagination: pagination(total_records)}, formats: :json
   end
