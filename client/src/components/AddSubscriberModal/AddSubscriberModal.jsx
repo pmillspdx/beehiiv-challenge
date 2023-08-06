@@ -32,6 +32,7 @@ const AddSubscriberModal = (props) => {
     createSubscriber(payload)
     .then(() => {
       onSuccess()
+      onCloseForm()
     })
     .catch((payload) => {
       const error = payload?.response?.data?.message || 'Something went wrong'
@@ -43,6 +44,8 @@ const AddSubscriberModal = (props) => {
   }
   const onCloseForm = () => {
     setError(false)
+    setEmail('')
+    setName('')
     onClose()
   }
 
