@@ -10,6 +10,7 @@ const AddSubscriberModal = (props) => {
   const [isSaving, setIsSaving] = useState(false)
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [error, setError] = useState(false)
 
   const handleChange = (e) => {
     const { target: { name, value }} = e
@@ -26,6 +27,7 @@ const AddSubscriberModal = (props) => {
       name
     }
 
+    setError(false)
     setIsSaving(true)
     createSubscriber(payload)
     .then(() => {
@@ -33,16 +35,21 @@ const AddSubscriberModal = (props) => {
     })
     .catch((payload) => {
       const error = payload?.response?.data?.message || 'Something went wrong'
-      console.error(error)
+      setError(error)
     })
     .finally(() => {
       setIsSaving(false)
     })
   }
+  const onCloseForm = () => {
+    setError(false)
+    onClose()
+  }
 
   return (
-    <Modal modalTitle="Add Subscriber" showModal={isOpen} onCloseModal={onClose}>
+    <Modal modalTitle="Add Subscriber" showModal={isOpen} onCloseModal={onCloseForm}>
       <>
+        {error && <div className="p-6" style={{color: 'red'}}>{error}</div>}
         <ModalBody>
           <form className="my-4 text-blueGray-500 text-lg leading-relaxed">
             <div className="mb-4">
@@ -77,7 +84,7 @@ const AddSubscriberModal = (props) => {
           <SecondaryButton
             className="background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1"
             type="button"
-            onClick={onClose}
+            onClick={onCloseForm}
           >
             Cancel
           </SecondaryButton>
