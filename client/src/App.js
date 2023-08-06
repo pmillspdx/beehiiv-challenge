@@ -72,6 +72,7 @@ function App() {
 
   const onSuccessAddSubscriber = () => {
     setShowAddModal(false)
+    refreshSubscribers()
   }
 
   const onUpdateStatusSelectected = (subscriberId, status) => {
@@ -87,6 +88,7 @@ function App() {
   const onSuccessUpdateStatusSubscriber = () => {
     setFocusedSubscriberId('')
     setFocusedSubscriberStatus('')
+    refreshSubscribers()
   }
 
   return (
