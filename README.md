@@ -57,3 +57,7 @@ Challenge is a rails/react app meant to be used with our code challenge assignme
 ### Update Subscriber Status Modal
 
 ![image](https://user-images.githubusercontent.com/5751986/148653182-3a282533-dbb8-4d96-a511-5a5008cf3daf.png)
+
+### Use this page as a walkthrough to prep this app to run on Heroku
+
+https://medium.com/swlh/set-up-your-rails-and-react-apps-for-heroku-right-from-the-start-eed2bca83b6

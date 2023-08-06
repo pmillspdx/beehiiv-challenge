@@ -1,0 +1,2 @@
+web: PORT=2001 yarn --cwd frontend start
+api: PORT=2000 bundle exec rails s

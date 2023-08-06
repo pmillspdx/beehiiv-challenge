@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Create 127 subscribers
+
+for subscriber_count in 1..127 do
+    Subscriber.create(name: "Test Guy#{subscriber_count}", email: "tguy#{subscriber_count}@test.com", status: (subscriber_count % 4 == 0) ? "inactive" : "active")
+end
