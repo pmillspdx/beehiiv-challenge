@@ -29,5 +29,7 @@ class SubscribersController < ApplicationController
     subscriber.status = params[:status]
     subscriber.save!
     render json: {message: "Subscriber updated successfully"}, formats: :json, status: :ok
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {message: "Subscriber not updated successfully: #{error.message}"}, formats: :json, status: :not_found
   end
 end
