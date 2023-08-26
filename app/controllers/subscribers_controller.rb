@@ -6,8 +6,9 @@ class SubscribersController < ApplicationController
   ##
   # GET /api/subscribers
   def index
-    total_records = Subscriber.count
-    limited_subscribers = Subscriber.limit(limit).offset(offset)
+    subscribers = params[:search_string].empty? ? Subscriber.all : Subscriber.where("name ilike '%#{params[:search_string]}%' or email ilike '%#{params[:search_string]}%'")
+    total_records = subscribers.count
+    limited_subscribers = subscribers.limit(limit).offset(offset)
 
     render json: {subscribers: limited_subscribers, pagination: pagination(total_records)}, formats: :json
   end

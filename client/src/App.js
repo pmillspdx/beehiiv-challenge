@@ -29,11 +29,13 @@ function App() {
   const [subscribers, setSubscribers] = useState([])
   const [pagination, setPagination] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [searchString, setSearchString] = useState('')
 
   const refreshSubscribers = useCallback(() => {
     const params = {
       page,
-      per_page: perPage
+      per_page: perPage,
+      search_string: searchString
     }
 
     setIsLoading(true)
@@ -52,7 +54,7 @@ function App() {
     .finally(() => {
       setIsLoading(false)
     })
-  }, [page, perPage]);
+  }, [page, perPage, searchString]);
 
   useEffect(() => {
     refreshSubscribers()
@@ -113,6 +115,10 @@ function App() {
           <SecondaryButton onClick={onOpenAddSubscriber}>
             Add Subscriber
           </SecondaryButton>
+        </div>
+        <div>
+          <input type="text" id="search"></input>
+          <button onClick={()=>setSearchString(document.getElementById("search").value)}>Search</button>
         </div>
         <div className="mt-6">
           <SubscriberTable
